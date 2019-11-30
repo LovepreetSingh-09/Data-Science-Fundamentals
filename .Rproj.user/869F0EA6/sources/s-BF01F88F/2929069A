@@ -5,7 +5,7 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3607091803",
+    "hash" : "0",
     "id" : "2929069A",
     "lastKnownWriteTime" : 1575040664,
     "last_content_update" : 1575040664346,
@@ -13,7 +13,7 @@
     "project_path" : "model_analysis.R",
     "properties" : {
         "cursorPosition" : "26,0",
-        "scrollLine" : "10",
+        "scrollLine" : "8",
         "tempName" : "Untitled1"
     },
     "read_only" : false,
