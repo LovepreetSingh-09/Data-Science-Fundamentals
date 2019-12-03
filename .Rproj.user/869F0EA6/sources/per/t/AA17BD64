@@ -1,25 +1,25 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1575038731694.000,
+    "created" : 1575385673809.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "2100655758",
-    "id" : "2929069A",
+    "id" : "AA17BD64",
     "lastKnownWriteTime" : 1575307922,
-    "last_content_update" : 1575307922954,
+    "last_content_update" : 1575307922,
     "path" : "~/R/Data-science-fundamentals/model_analysis.R",
     "project_path" : "model_analysis.R",
     "properties" : {
-        "cursorPosition" : "98,0",
-        "scrollLine" : "84",
+        "cursorPosition" : "1,0",
+        "scrollLine" : "0",
         "tempName" : "Untitled1"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 3,
+    "relative_order" : 4,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"
