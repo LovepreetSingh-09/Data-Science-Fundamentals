@@ -1,4 +1,6 @@
 library(ROCR)
+library(rpart)
+library(class)
 
 d=read.table('orange_small_train.data.gz',sep='\t',header = T, na.strings = c(NA,''))
 str(d)
@@ -53,12 +55,13 @@ makepred <- function(outcol,varcol,appcol){
   natab <- table(as.factor(outcol[is.na(varcol)]))
   pPoswna=(natab/sum(natab))[pos]
   vtab <- table(as.factor(outcol),varcol)
-  pPoswv <- vtab[pos,]/colSums(vtab)
+  pPoswv <- (vtab[pos, ])/(colSums(vtab))
   pred <- pPoswv[appcol]
   pred[is.na(appcol)]=pPoswna
   pred[is.na(pred)] <- pPos
   pred
 }
+
 
 for (v in catvars) {
   pi <- paste('pred',v,sep='')
@@ -81,4 +84,93 @@ for (v in catvars){
   }
 }
 
+mkPredN <- function(varcol,outcol,appcol){
+  cuts <- unique(as.numeric(quantile(varcol,probs=seq(0,1,0.1),na.rm = T)))
+  varC <- cut(varcol,cuts)
+  appC <- cut(appcol,cuts)
+  makepred(outcol,varC,appC)
+}
+for (v in numvars){
+  pi <- paste('pred',v,sep='')
+  dtrain[,pi] <- mkPredN(dtrain[,outcome],dtrain[,v],dtrain[,v])
+  dtest[,pi] <- mkPredN(dtrain[,outcome],dtrain[,v],dtest[,v])
+  dcal[,pi] <- mkPredN(dtrain[,outcome],dtrain[,v],dcal[,v])
+  aucTrain <- calcAUC(dtrain[,pi],dtrain[,outcome])
+  if(aucTrain>=0.55) {
+    aucCal <- calcAUC(dcal[,pi],dcal[,outcome])
+    print(sprintf("%s, trainAUC: %4.3f calibrationAUC: %4.3f", pi,aucTrain,aucCal))
+  } 
+}
 
+a=sample(20,9)
+a=seq(1,5,1)
+a
+sort(a)
+v=quantile(a,probs=seq(0,1,0.1),na.rm = T)
+v
+v=unique(as.numeric(v))
+cut(a,v)
+
+logLikelyhood <- function(outcol,predcol){
+  sum(ifelse(outcol==pos,log2(predcol),log2(1-predcol)))
+}
+selVars <- c()
+minStep <- 5
+baseRateCheck <-logLikelyhood(dcal[,outcome],sum(as.numeric(dcal[,outcome]==pos)/length(dcal[,outcome])))
+for(v in catvars) {
+  pi <- paste('pred',v,sep='')
+  liCheck <- 2*((logLikelyhood(dcal[,outcome],dcal[,pi]) -baseRateCheck))
+  if(liCheck>minStep) {
+    print(sprintf("%s, calibrationScore: %g", pi,liCheck))
+    selVars <- c(selVars,pi)
+  }
+}
+
+for(v in numvars) {
+  pi <- paste('pred',v,sep='')
+  liCheck <- 2*((logLikelyhood(dcal[,outcome],dcal[,pi]) -baseRateCheck) - 1)
+  if(liCheck>=minStep) {
+    print(sprintf("%s, calibrationScore: %g", pi,liCheck))
+    selVars <- c(selVars,pi)
+  }
+}
+
+f <- paste(outcome,'>0 ~ ',paste(selVars,collapse = '+'),sep='')
+f
+tmodel <- rpart(f,data=dtrain,control=rpart.control(minsplit = 1000,minbucket = 1000,cp=0.001,maxdepth = 5))
+tmodel
+print(calcAUC(predict(tmodel,dtrain),dtrain[,outcome]))
+print(calcAUC(predict(tmodel,dtest),dtest[,outcome]))
+print(calcAUC(predict(tmodel,dcal),dcal[,outcome]))
+
+par(cex=0.7)
+plot(tmodel)
+text(tmodel)
+
+nK <- 200
+knnTrain <- dtrain[,selVars]
+knnCl <- dtrain[,outcome]==pos
+knnPred <- function(df) {
+  knnDecision <- knn(knnTrain,df,knnCl,k=nK,prob=T)
+  ifelse(knnDecision==TRUE,
+         attributes(knnDecision)$prob,
+         1-(attributes(knnDecision)$prob))
+}
+print(calcAUC(knnPred(dtrain[,selVars]),dtrain[,outcome]))
+print(calcAUC(knnPred(dcal[,selVars]),dcal[,outcome]))
+print(calcAUC(knnPred(dtest[,selVars]),dtest[,outcome]))
+
+dcal$kpred <- knnPred(dcal[,selVars])
+ggplot(data=dcal) +
+  geom_density(aes(x=kpred, color=as.factor(churn),linetype=as.factor(churn)))
+
+plotROC <- function(predcol,outcol) {
+  perf <- performance(prediction(predcol,outcol==pos),'tpr','fpr')
+  pf <- data.frame(
+    FalsePositiveRate=perf@x.values[[1]],
+    TruePositiveRate=perf@y.values[[1]])
+  ggplot() +
+    geom_line(data=pf,aes(x=FalsePositiveRate,y=TruePositiveRate)) +
+    geom_line(aes(x=c(0,1),y=c(0,1)))
+}
+print(plotROC(knnPred(dtest[,selVars]),dtest[,outcome]))
