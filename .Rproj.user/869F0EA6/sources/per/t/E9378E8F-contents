@@ -1,6 +1,7 @@
 library(ROCR)
 library(rpart)
 library(class)
+library(e1071)
 
 d=read.table('orange_small_train.data.gz',sep='\t',header = T, na.strings = c(NA,''))
 str(d)
@@ -174,3 +175,15 @@ plotROC <- function(predcol,outcol) {
     geom_line(aes(x=c(0,1),y=c(0,1)))
 }
 print(plotROC(knnPred(dtest[,selVars]),dtest[,outcome]))
+
+
+lVars <- c(catvars,numvars)
+ff <- paste('as.factor(',outcome,'>0) ~ ', paste(lVars,collapse=' + '),sep='')
+ff
+nbmodel <- naiveBayes(as.formula(ff),data=dtrain)
+dtrain$nbpred <- predict(nbmodel,newdata=dtrain,type='raw')[,'TRUE']
+dcal$nbpred <- predict(nbmodel,newdata=dcal,type='raw')[,'TRUE']
+dtest$nbpred <- predict(nbmodel,newdata=dtest,type='raw')[,'TRUE']
+calcAUC(dTrain$nbpred,dtrain[,outcome])
+calcAUC(dCal$nbpred,dcal[,outcome])
+calcAUC(dTest$nbpred,dtest[,outcome])

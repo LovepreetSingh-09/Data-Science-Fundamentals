@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1575561943872.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1449181086",
+    "id" : "41E6EC14",
+    "lastKnownWriteTime" : 1575564213,
+    "last_content_update" : 1575564213279,
+    "path" : "~/R/Data-science-fundamentals/Linear_Regression.R",
+    "project_path" : "Linear_Regression.R",
+    "properties" : {
+        "cursorPosition" : "49,0",
+        "scrollLine" : "29",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
