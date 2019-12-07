@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1575740201584.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3378194379",
+    "id" : "21ACFA42",
+    "lastKnownWriteTime" : 1575740117,
+    "last_content_update" : 1575740117,
+    "path" : "~/R/Data-science-fundamentals/Hierarchical_clustering.R",
+    "project_path" : "Hierarchical_clustering.R",
+    "properties" : {
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
