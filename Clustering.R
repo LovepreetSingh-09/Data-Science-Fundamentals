@@ -137,3 +137,51 @@ kbest.p<-5
 cboot<-clusterboot(pmatrix, clustermethod=kmeansCBI, runs=100,iter.max=100,krange=kbest.p, seed=15555)
 groups <- cboot$result$partition
 print_clusters(cboot$result$partition, kbest.p)
+
+assign_clusters <- function(newpt,centers,xcenter=0,xscale=1){
+  pt <- (newpt-xcenter)/xscale
+  dists <- apply(centers,1,FUN=function(row){ sqr_eqdist(row,pt) })
+  which.min(dists)
+}
+
+rnorm.multidim <- function(n,mean,sd,colstr='x'){
+  ndim <- length(mean)
+  data <- NULL
+  for (i in 1:ndim){
+    col <- rnorm(n,mean=mean[i],sd=sd[i])
+    data <- cbind(data,col)
+  }
+  cnames <- paste(colstr,1:ndim,sep='')
+  colnames(data) <- cnames 
+  data
+}
+
+mean1 <- c(1, 1, 1)
+sd1 <- c(1, 2, 1)
+mean2 <- c(10, -3, 5)
+sd2 <- c(2, 1, 2)
+mean3 <- c(-5, -5, -5)
+sd3 <- c(1.5, 2, 1)
+clust1 <- rnorm.multidim(100, mean1, sd1)
+clust2 <- rnorm.multidim(100, mean2, sd2)
+clust3 <- rnorm.multidim(100, mean3, sd3)
+toydata <- rbind(clust1,rbind(clust2,clust3))
+tmatrix <- scale(toydata)
+tcenter <- attr(tmatrix,'scaled:center')
+tscale <- attr(tmatrix,'scaled:scale')
+kbest.t <- 3
+tclusters <- kmeans(tmatrix, kbest.t, nstart=100, iter.max=100)
+summary(tclusters)
+tclusters$size
+unscale <- function(x,mean,sd){
+  x*sd+mean
+}
+unscale(tclusters$centers[1,],tcenter,tscale)
+unscale(tclusters$centers[2,], tcenter, tscale)
+unscale(tclusters$centers[3,], tcenter, tscale)
+
+assign_clusters(rnorm.multidim(1, mean1, sd1), tclusters$centers, tcenter, tscale)
+assign_clusters(rnorm.multidim(1, mean2, sd2), tclusters$centers, tcenter, tscale)
+assign_clusters(rnorm.multidim(1, mean3, sd3), tclusters$centers, tcenter, tscale)
+
+
