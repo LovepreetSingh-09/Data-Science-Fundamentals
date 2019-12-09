@@ -5,13 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1616012069",
+    "hash" : "4266282261",
     "id" : "74B101C8",
-    "lastKnownWriteTime" : 1575829319,
-    "last_content_update" : 1575829319,
+    "lastKnownWriteTime" : 1575902262,
+    "last_content_update" : 1575902262609,
     "path" : "~/R/Data-science-fundamentals/Clustering.R",
     "project_path" : "Clustering.R",
     "properties" : {
+        "cursorPosition" : "186,0",
+        "scrollLine" : "166"
     },
     "read_only" : false,
     "read_only_alternatives" : [
