@@ -169,6 +169,7 @@ toydata <- rbind(clust1,rbind(clust2,clust3))
 tmatrix <- scale(toydata)
 tcenter <- attr(tmatrix,'scaled:center')
 tscale <- attr(tmatrix,'scaled:scale')
+
 kbest.t <- 3
 tclusters <- kmeans(tmatrix, kbest.t, nstart=100, iter.max=100)
 summary(tclusters)
@@ -176,6 +177,7 @@ tclusters$size
 unscale <- function(x,mean,sd){
   x*sd+mean
 }
+
 unscale(tclusters$centers[1,],tcenter,tscale)
 unscale(tclusters$centers[2,], tcenter, tscale)
 unscale(tclusters$centers[3,], tcenter, tscale)
@@ -183,5 +185,3 @@ unscale(tclusters$centers[3,], tcenter, tscale)
 assign_clusters(rnorm.multidim(1, mean1, sd1), tclusters$centers, tcenter, tscale)
 assign_clusters(rnorm.multidim(1, mean2, sd2), tclusters$centers, tcenter, tscale)
 assign_clusters(rnorm.multidim(1, mean3, sd3), tclusters$centers, tcenter, tscale)
-
-
