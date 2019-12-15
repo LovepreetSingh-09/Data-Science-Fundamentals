@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1576426719427.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A776A6E9",
+    "lastKnownWriteTime" : 1576426888,
+    "last_content_update" : 1576426888801,
+    "path" : "~/R/Data-science-fundamentals/Bagging_and_RandomForest.R",
+    "project_path" : "Bagging_and_RandomForest.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
