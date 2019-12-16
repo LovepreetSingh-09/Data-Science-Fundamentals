@@ -5,13 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "666614422",
     "id" : "A776A6E9",
-    "lastKnownWriteTime" : 1576426888,
-    "last_content_update" : 1576426888801,
+    "lastKnownWriteTime" : 1576510373,
+    "last_content_update" : 1576510373346,
     "path" : "~/R/Data-science-fundamentals/Bagging_and_RandomForest.R",
     "project_path" : "Bagging_and_RandomForest.R",
     "properties" : {
+        "cursorPosition" : "80,0",
+        "scrollLine" : "56",
         "tempName" : "Untitled1"
     },
     "read_only" : false,
