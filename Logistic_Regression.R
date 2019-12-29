@@ -52,6 +52,7 @@ nplot <- function(plist){
 
 pnull <- mean(as.numeric(dtrain$atRisk))
 pnull
+
 # enrichment vs threshold lot
 p1 <- ggplot(rocframe,aes(x=threshold,y=precision/pnull))+
   geom_line()+
