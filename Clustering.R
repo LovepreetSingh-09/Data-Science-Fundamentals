@@ -178,6 +178,7 @@ unscale <- function(x,mean,sd){
   x*sd+mean
 }
 
+
 unscale(tclusters$centers[1,],tcenter,tscale)
 unscale(tclusters$centers[2,], tcenter, tscale)
 unscale(tclusters$centers[3,], tcenter, tscale)
