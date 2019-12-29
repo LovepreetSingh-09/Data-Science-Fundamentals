@@ -140,6 +140,7 @@ f <- paste(outcome,'>0 ~ ',paste(selVars,collapse = '+'),sep='')
 f
 tmodel <- rpart(f,data=dtrain,control=rpart.control(minsplit = 1000,minbucket = 1000,cp=0.001,maxdepth = 5))
 tmodel
+
 print(calcAUC(predict(tmodel,dtrain),dtrain[,outcome]))
 print(calcAUC(predict(tmodel,dtest),dtest[,outcome]))
 print(calcAUC(predict(tmodel,dcal),dcal[,outcome]))
