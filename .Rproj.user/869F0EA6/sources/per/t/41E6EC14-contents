@@ -9,6 +9,7 @@ dtest <- subset(psub,ORIGRANDGROUP<500)
 dim(dtest)
 model <- lm(log10(PINCP)~AGEP+SEX+COW+SCHL, data=dtrain)
 summary(model)
+
 dtrain$predLogPINCP <- predict(model,data=dtrain)
 dtest$predLogPINCP <- predict(model,dtest)
 
