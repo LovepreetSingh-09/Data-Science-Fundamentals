@@ -1,3 +1,4 @@
+
 library(ggplot2)
 library(ROCR)
 library(grid)
@@ -116,6 +117,7 @@ p
 prsq <- function(x,y){
   1-(x/y)
 }
+
 prsq(model.dev,null.dev)
 
 AIC <- -2*sum(llcomponents(as.numeric(dtrain$atRisk),dtrain$pred))+2*length(coefficients(model))
