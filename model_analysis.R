@@ -100,7 +100,6 @@ cb
 ca
 
 
-
 c=matrix(1:5,1:5,nrow=5,ncol=5)
 c
 as.vector(c)
