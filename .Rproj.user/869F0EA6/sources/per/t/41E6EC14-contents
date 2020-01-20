@@ -27,6 +27,7 @@ ggplot(dtest,aes(x=predLogPINCP,y=(predLogPINCP-log10(PINCP))))+
 rsq <- function(y,f){
   1-(sum((y-f)^2)/sum((y-mean(y))^2))
 }
+
 train_rsq <- rsq(log10(dtrain$PINCP),predict(model,dtrain))
 train_rsq
 rsq(log10(dtest$PINCP),predict(model,dtest))

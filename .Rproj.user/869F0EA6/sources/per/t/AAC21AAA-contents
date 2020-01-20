@@ -1,5 +1,7 @@
+
 library(ggplot2)
 library(scales)
+
 custdata=read.table('custdata.tsv',sep='\t',header=T)
 summary(custdata)
 
