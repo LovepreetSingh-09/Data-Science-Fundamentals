@@ -17,6 +17,7 @@ str(dmatrix)
 
 p <- hclust(dmatrix,method = 'ward')
 summary(p)
+
 plot(p,labels=protein$Country)
 rect.hclust(p,k=5)
 
@@ -39,6 +40,7 @@ project <- predict(princ,pmatrix)[,1:ncomp]
 project
 project.plus <- cbind(data.frame(project),clusters=as.factor(groups),country=protein$Country)
 project.plus
+
 ggplot(project.plus,aes(x=PC1,y=PC2))+
   geom_point(aes(shape=clusters))+
   geom_text(aes(label=country),hjust=0,vjust=1)

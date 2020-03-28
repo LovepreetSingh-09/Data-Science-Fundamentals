@@ -103,11 +103,13 @@ model.dev
 
 DOF.null <- dim(dtrain)[[1]]-1
 DOF.null
+
 DOF.model <- dim(dtrain)[[1]]-length(coefficients(model))
 DOF.model
 
 delDev <- null.dev-model.dev
 delDev
+
 delDOF <- DOF.null-DOF.model
 delDOF
 

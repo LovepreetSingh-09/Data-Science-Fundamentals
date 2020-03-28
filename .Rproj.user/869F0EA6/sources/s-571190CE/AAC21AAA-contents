@@ -54,3 +54,6 @@ signedlog10=function(x){
 custdata$gp=runif(dim(custdata)[1])
 test_set=subset(custdata,custdata$gp<=0.1)
 dim(test_set)
+
+
+
