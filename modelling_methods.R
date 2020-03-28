@@ -188,3 +188,4 @@ dtest$nbpred <- predict(nbmodel,newdata=dtest,type='raw')[,'TRUE']
 calcAUC(dTrain$nbpred,dtrain[,outcome])
 calcAUC(dCal$nbpred,dcal[,outcome])
 calcAUC(dTest$nbpred,dtest[,outcome])
+
