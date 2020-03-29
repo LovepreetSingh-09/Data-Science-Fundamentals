@@ -5,13 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "1330776172",
     "id" : "47EDBCB6",
-    "lastKnownWriteTime" : 1576682742,
-    "last_content_update" : 1576682742888,
+    "lastKnownWriteTime" : 1585498745,
+    "last_content_update" : 1585498745863,
     "path" : "~/R/Data-science-fundamentals/GAMs.R",
     "project_path" : "GAMs.R",
     "properties" : {
+        "cursorPosition" : "75,0",
+        "scrollLine" : "60",
         "tempName" : "Untitled1"
     },
     "read_only" : false,
