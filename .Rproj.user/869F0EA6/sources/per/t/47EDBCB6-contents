@@ -78,3 +78,13 @@ pred.lin <- predict(l_model, newdata=test)
 pred.glin <- predict(g_model, newdata=test)
 cor(pred.lin, test$DBWT)^2
 cor(pred.glin, test$DBWT)^2
+
+# Logistic Regression using GAM
+form <- as.formula("DBWT < 2000 ~ PWGT + WTGAIN + MAGER + UPREVIS")
+logmod <- glm(form, data=train, family=binomial(link="logit"))
+summary(logmod)
+
+form2 <- as.formula("DBWT<2000~s(PWGT)+s(WTGAIN)+s(MAGER)+s(UPREVIS)")
+glogmod <- gam(form2, data=train, family=binomial(link="logit"))
+glogmod$converged
+summary(glogmod)

@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585579321976.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1478110125",
+    "id" : "141DD331",
+    "lastKnownWriteTime" : 1585581029,
+    "last_content_update" : 1585581029979,
+    "path" : "~/R/Data-science-fundamentals/Kernels.R",
+    "project_path" : "Kernels.R",
+    "properties" : {
+        "cursorPosition" : "58,0",
+        "scrollLine" : "40",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
