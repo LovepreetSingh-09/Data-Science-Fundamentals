@@ -3,6 +3,8 @@ library(ggplot2)
 
 load('psub.rData')
 str(psub)
+fix(psub)
+psub
 
 dtrain <- subset(psub,ORIGRANDGROUP >= 500)
 dim(dtrain)
