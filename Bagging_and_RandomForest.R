@@ -3,6 +3,7 @@ library(rpart)
 
 spamD <- read.table('spamD.txt',sep='\t',header=T)
 str(spamD)
+View(spamD)
 
 spam_train <- spamD[spamD$rgroup>=10,]
 spam_test <- spamD[spamD$rgroup<10,]
